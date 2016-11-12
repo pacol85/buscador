@@ -1,0 +1,31 @@
+#ifndef RESULTADO_H
+#define RESULTADO_H
+
+#include <QMainWindow>
+#include <QSqlQuery>
+
+namespace Ui {
+class resultado;
+}
+
+class resultado : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit resultado(QWidget *parent = 0);
+    ~resultado();
+
+//protected slots:
+    void llenarTabla(QString tbuscar);
+    void buscar(QString queryText, QListWidget tabla))
+
+//protected:
+    //void agregaItem(QString valor, int row, int column);
+
+private:
+    Ui::resultado *ui;
+
+};
+
+#endif // RESULTADO_H
