@@ -3,6 +3,9 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QDebug>
+#include <QPixmap>
+#include <filedownloader.h>
+#include <imagen.h>
 
 resultado::resultado(QWidget *parent) :
     QMainWindow(parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint
@@ -17,6 +20,8 @@ resultado::resultado(QWidget *parent) :
     //titulos << "Codigo" << "Nombre" << "Ubicacion" << "Color" << "Existencia";
 
     //ui->tabla->setHorizontalHeaderLabels(titulos);
+
+    connect(this, SIGNAL(on_tabla2_itemDoubleClicked()), this, SLOT(cargarImagen()));
 }
 
 resultado::~resultado()
@@ -82,6 +87,12 @@ void resultado::on_tabla_itemDoubleClicked(QListWidgetItem *item)
     QString prod = items[0];
     qDebug() << prod;
 
+/*
+    QUrl imageUrl("http://farm5.static.flickr.com/4101/4798839454_725882374d_b.jpg");
+
+    m_pImgCtrl = new FileDownloader(imageUrl, this);
+
+    connect(m_pImgCtrl, SIGNAL (downloaded()), this, SLOT (loadImage()));*/
 }
 
 void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
@@ -94,19 +105,35 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
     QString queryText = "select url, pr_ubicacion from cr_productos where pr_codigo = '" + prod + "'";
     QSqlQuery query;
     query.exec(queryText);
+
+    QString urlImagen = "";
     while (query.next()) {
         QString result = "";
         result = result + query.value(0).toString() + ", " + query.value(1).toString();
         qDebug() << result;
+
+        if(query.value(0).toString() != ""){
+            urlImagen = query.value(0).toString();
+        }
+
         //im.loadUrl(query.value(0).toString());
-        im.makeRequests("https://dl.dropboxusercontent.com/u/4397/albImagenes/lanababy.png");
+        /*im.makeRequests("https://dl.dropboxusercontent.com/u/4397/albImagenes/lanababy.png");
         //prueba de uso de networkManager
         connect(&im, SIGNAL(dataReadyRead(QByteArray)), this, SLOT(dataInTheHouse(QByteArray)));
 
         im.loadUbic(query.value(1).toString());
         im.move(pos().x(), pos().y() + ui->tabWidget->height());
-        im.show();
+        im.show();*/
     }
+
+    //abrir la pantalla de imagen
+    if(urlImagen != ""){
+        im.show();
+
+        im.imagenes(urlImagen);
+    }
+
+
 }
 
 void resultado::dataInTheHouse(QByteArray data)
@@ -115,3 +142,17 @@ void resultado::dataInTheHouse(QByteArray data)
     dataString = data;
     qDebug() << dataString;
 }
+/*
+void resultado::cargarImagen()
+{
+    //abrir la pantalla de imagen
+    im.show();
+    //cargar imagen en im
+    QUrl imageUrl(urlImagen);
+
+    m_pImgCtrl = new FileDownloader(imageUrl, this);
+    im.imagenes(m_pImgCtrl);
+    //connect(m_pImgCtrl, SIGNAL (downloaded()), this, SLOT (loadImage()));
+}
+
+*/

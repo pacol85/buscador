@@ -40,10 +40,15 @@ int main(int argc, char *argv[])
 
 bool createConnection(){
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
+    db.setHostName("jupiter.whfweb.com");//("node02.facesharedus1.com");
+    //db.setPort(2083);
+    db.setDatabaseName("nllsxjwy_controlruta");
+    db.setUserName("nllsxjwy_cr");
+    db.setPassword("L1b3rt4d#");
+    /*db.setHostName("localhost");
     db.setDatabaseName("controlruta");
     db.setUserName("root");
-    db.setPassword("");
+    db.setPassword("");*/
     if (!db.open()) {
         printf("Database error occurred");
         return false;

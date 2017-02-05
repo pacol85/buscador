@@ -5,7 +5,9 @@
 #include <QSqlQuery>
 #include <QString>
 #include <QListWidget>
-#include "imagen.h"
+#include <filedownloader.h>
+#include <imagen.h>
+
 
 namespace Ui {
 class resultado;
@@ -22,6 +24,7 @@ public:
 //protected slots:
     void llenarTabla(QString tbuscar);
     void buscar(QString queryText, QListWidget *tabla);
+    //void cargarImagen();
 
 //protected:
     //void agregaItem(QString valor, int row, int column);
@@ -33,8 +36,8 @@ private slots:
 
 private:
     Ui::resultado *ui;
+    FileDownloader * m_pImgCtrl;
     Imagen im;
-
 };
 
 #endif // RESULTADO_H

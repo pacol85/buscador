@@ -6,12 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>251</width>
-    <height>322</height>
+    <width>180</width>
+    <height>180</height>
    </rect>
-  </property>
-  <property name="mouseTracking">
-   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>Frame</string>
@@ -22,37 +19,18 @@
   <property name="frameShadow">
    <enum>QFrame::Raised</enum>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
+  <widget class="QLabel" name="lbl_imagen">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>251</width>
-     <height>321</height>
+     <width>180</width>
+     <height>180</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QGraphicsView" name="foto"/>
-    </item>
-    <item>
-     <widget class="QLabel" name="ubicacion">
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="close">
-      <property name="text">
-       <string>Cerrar</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>
