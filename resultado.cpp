@@ -110,7 +110,7 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
     QString bodega = "";
     QString pasillo = "";
     QString caja = "";
-    QString estilo = "";
+
     while (query.next()) {
         QString result = "";
         result = result + query.value(0).toString() + ", " + query.value(1).toString();
@@ -128,9 +128,7 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
         if(query.value(3).toString() != ""){
             caja = query.value(3).toString();
         }
-        if(query.value(4).toString() != ""){
-            estilo = query.value(4).toString();
-        }
+
 
         //im.loadUrl(query.value(0).toString());
         /*im.makeRequests("https://dl.dropboxusercontent.com/u/4397/albImagenes/lanababy.png");
@@ -146,7 +144,7 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
     if(urlImagen != ""){
         im.show();
 
-        im.imagenes(urlImagen, bodega, pasillo, caja, estilo);
+        im.imagenes(urlImagen, bodega, pasillo, caja, prod);
     }
 
 

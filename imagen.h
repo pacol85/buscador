@@ -15,7 +15,7 @@ class Imagen : public QFrame
 public:
     explicit Imagen(QWidget *parent = 0);
     ~Imagen();
-    void imagenes(QString urlImagen, QString bodega, QString pasillo, QString caja, QString estilo);
+    void imagenes(QString urlImagen, QString bodega, QString pasillo, QString caja, QString codigo);
 
 private slots:
     void loadImage();

@@ -14,7 +14,7 @@ Imagen::~Imagen()
     delete ui;
 }
 
-void Imagen::imagenes(QString urlImagen, QString bodega, QString pasillo, QString caja, QString estilo){
+void Imagen::imagenes(QString urlImagen, QString bodega, QString pasillo, QString caja, QString codigo){
     //cargar ubicación para imagen
     QString ubicacion = "Bodega: ";
     ubicacion += bodega;
@@ -23,7 +23,7 @@ void Imagen::imagenes(QString urlImagen, QString bodega, QString pasillo, QStrin
     ubicacion += "\nCaja: ";
     ubicacion += caja;
     ui->lbl_ubicacion->setText(ubicacion);
-    ui->lbl_estilo->setText(estilo);
+    ui->lbl_estilo->setText(codigo);
 
     //cargar imagen en im
     QUrl imageUrl(urlImagen);
