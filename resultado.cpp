@@ -102,11 +102,15 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
     QString prod = items[0];
     qDebug() << prod;
 
-    QString queryText = "select url, pr_ubicacion from cr_productos where pr_codigo = '" + prod + "'";
+    QString queryText = "select url, bodega, pasillo, caja, estilo from cr_productos where pr_codigo = '" + prod + "'";
     QSqlQuery query;
     query.exec(queryText);
 
     QString urlImagen = "";
+    QString bodega = "";
+    QString pasillo = "";
+    QString caja = "";
+    QString estilo = "";
     while (query.next()) {
         QString result = "";
         result = result + query.value(0).toString() + ", " + query.value(1).toString();
@@ -114,6 +118,18 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
 
         if(query.value(0).toString() != ""){
             urlImagen = query.value(0).toString();
+        }
+        if(query.value(1).toString() != ""){
+            bodega = query.value(1).toString();
+        }
+        if(query.value(2).toString() != ""){
+            pasillo = query.value(2).toString();
+        }
+        if(query.value(3).toString() != ""){
+            caja = query.value(3).toString();
+        }
+        if(query.value(4).toString() != ""){
+            estilo = query.value(4).toString();
         }
 
         //im.loadUrl(query.value(0).toString());
@@ -130,7 +146,7 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
     if(urlImagen != ""){
         im.show();
 
-        im.imagenes(urlImagen);
+        im.imagenes(urlImagen, bodega, pasillo, caja, estilo);
     }
 
 
