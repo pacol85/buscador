@@ -69,8 +69,17 @@ void resultado::buscar(QString queryText, QListWidget* tabla){
     int row = 0;
     tabla->clear();
     while (query.next()) {
+        //remover caracter final si es distinto de número
+        QString codigo = query.value(0).toString();
+
+        QChar last = codigo.at(codigo.length()-1);
+        qDebug() << last;
+        if(!last.isDigit()){
+            codigo = codigo.remove(codigo.length()-1, 1);
+        }
+
         QString fila = "";
-        fila = fila + query.value(0).toString() + " - " + query.value(1).toString() +
+        fila = fila + codigo + " - " + query.value(1).toString() +
                 " - " + query.value(5).toString();
         QListWidgetItem *newItem = new QListWidgetItem;
         newItem->setText(fila);
@@ -142,6 +151,7 @@ void resultado::on_tabla2_itemDoubleClicked(QListWidgetItem *item)
 
     //abrir la pantalla de imagen
     if(urlImagen != ""){
+        im.move(pos().x(), pos().y() + ui->tabWidget->height());//res.move());
         im.show();
 
         im.imagenes(urlImagen, bodega, pasillo, caja, prod);

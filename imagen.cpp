@@ -37,3 +37,8 @@ void Imagen::loadImage()
     buttonImage.loadFromData(m_pImgCtrl->downloadedData());
     ui->lbl_imagen->setPixmap(buttonImage);
 }
+
+void Imagen::on_Imagen_resized(bool )
+{
+
+}

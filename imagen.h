@@ -21,6 +21,8 @@ private slots:
     void loadImage();
 
 
+    void on_Imagen_resized(bool );
+
 private:
     Ui::Imagen *ui;
     FileDownloader * m_pImgCtrl;
